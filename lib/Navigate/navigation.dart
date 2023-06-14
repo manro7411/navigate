@@ -66,7 +66,7 @@ class _BottomNavigationBarStatefulState
         children: const [
           HomePage(),
           Profile(),
-          Forum(),
+          Forum(isLoggedIn: true),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

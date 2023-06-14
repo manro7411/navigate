@@ -15,6 +15,8 @@ class _LoginFormState extends State<LoginForm> {
   String _token = '';
   final storage = FlutterSecureStorage();
   int _selectedIndex = 0;
+  bool isLoggedIn = false;
+
 
   Future<void> _login() async {
     final String username = _usernameController.text;
@@ -44,6 +46,8 @@ class _LoginFormState extends State<LoginForm> {
       setState(() {
         _token = token;
         _errorMessage = '';
+        isLoggedIn = true; // Update login status
+
       });
     } else {
       final String error = responseData['error'];
@@ -60,6 +64,8 @@ class _LoginFormState extends State<LoginForm> {
 
     setState(() {
       _token = '';
+      isLoggedIn = false; // Update login status
+
     });
 
     final Uri uri = Uri.parse('http://localhost:3000/logout');

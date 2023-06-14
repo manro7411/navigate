@@ -1,10 +1,9 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:navigate/pages/forum/questionpage.dart';
 
 class Forum extends StatelessWidget {
-  const Forum({Key? key}) : super(key: key);
+  final bool isLoggedIn; // Declare isLoggedIn as a variable
+  const Forum({Key? key, required this.isLoggedIn}) : super(key: key);
 
   void _goToQuestionPage(BuildContext context) {
     Navigator.push(
@@ -25,10 +24,11 @@ class Forum extends StatelessWidget {
               'Forum Page',
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
-            ElevatedButton(
-              onPressed: () => _goToQuestionPage(context),
-              child: Text('Go to Question Page'),
-            ),
+            if (isLoggedIn) // Conditionally show the button
+              ElevatedButton(
+                onPressed: () => _goToQuestionPage(context),
+                child: Text('Go to Question Page'),
+              ),
           ],
         ),
       ),
