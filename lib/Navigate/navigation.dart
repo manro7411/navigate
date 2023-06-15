@@ -37,6 +37,7 @@ class _BottomNavigationBarExampleState
     return BottomNavigationBarStateful(
       selectedIndex: _selectedIndex,
       onItemTapped: _onItemTapped,
+      isLoggedIn: false, // Pass the isLoggedIn parameter
     );
   }
 }
@@ -44,10 +45,13 @@ class _BottomNavigationBarExampleState
 class BottomNavigationBarStateful extends StatefulWidget {
   final int selectedIndex;
   final Function(int) onItemTapped;
+  final bool isLoggedIn; // Add the isLoggedIn parameter
 
   const BottomNavigationBarStateful({
     required this.selectedIndex,
     required this.onItemTapped,
+    required this.isLoggedIn, // Pass the isLoggedIn parameter
+
     Key? key,
   }) : super(key: key);
 
@@ -63,11 +67,7 @@ class _BottomNavigationBarStatefulState
     return Scaffold(
       body: IndexedStack(
         index: widget.selectedIndex,
-        children: const [
-          HomePage(),
-          Profile(),
-          Forum(isLoggedIn: true),
-        ],
+        children: const [HomePage(), Profile(), Forum(isLoggedIn: false)],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
